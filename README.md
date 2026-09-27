@@ -52,7 +52,7 @@ Securely houses the power source and provides organized terminal connections to 
 ### 8. 12V Battery
 Delivers the necessary electrical power source to drive the motors, motor driver, and overall hardware system efficiently.
 
-![12V Battery](assets/images/battery-12v.jpeg)
+![12V Battery](assets/images/battery12v.jpeg)
 
 ## Circuit Diagram & Connections
 
@@ -113,7 +113,7 @@ Solution: Fixed by ensuring the ESP32 and motor driver shared a common ground an
 
 **Obstacle detected** — both wheels rotate in different directions.
 
-![Obstacle Detected](assets/images/obstacles-detected%20.jpeg)
+![Obstacle Detected](assets/images/obstacledetected.jpeg)
 
 📹 [Watch Demo Video](assets/vedio/robo%20vedio.mp4)
 
