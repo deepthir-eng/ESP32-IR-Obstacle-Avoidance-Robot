@@ -2,8 +2,6 @@
 
 An embedded robotics project using ESP32 and IR sensors for real-time obstacle detection and autonomous movement, demonstrating sensor interfacing, microcontroller programming, and motor control.
 
-![ESP32](assets/images/esp32.jpeg)
-
 ---
 
 ## 📖 Introduction
@@ -22,31 +20,61 @@ To design, develop, and deploy an intelligent, IoT-enabled mobile robot capable 
 
 ## 🧰 Components
 
-| # | Component | Description |
-|---|-----------|-------------|
-| 1 | **ESP32** | Acts as the central processing unit and core microcontroller of the robot, providing built-in Wi-Fi and Bluetooth capabilities for executing navigation logic and transmitting IoT telemetry data. |
-| 2 | **L298N Dual H-Bridge Motor Driver** | Manages power and directional control for the DC motors, allowing the low-voltage control signals from the ESP32 to safely drive higher-voltage motors. |
-| 3 | **DC Motor** | Serves as the electromechanical actuators that drive the robot's wheels, converting electrical energy into physical motion for mobility and navigation. |
-| 4 | **Breadboard** | Provides a solderless platform for temporarily connecting and wiring electronic components together during prototyping and circuit assembly. |
-| 5 | **IR Sensor** | Acts as the proximity detection unit, emitting and receiving infrared light to instantly detect obstacles in the robot's path and send digital signals to the microcontroller. |
-| 6 | **Programming Cable (USB)** | Facilitates serial communication and firmware flashing, allowing you to upload code from your computer directly to the ESP32. |
-| 7 | **Battery Holder** | Securely houses the power source and provides organized terminal connections to distribute electrical power safely to the robot's circuitry. |
-| 8 | **12V Battery** | Delivers the necessary electrical power source to drive the motors, motor driver, and overall hardware system efficiently. |
+### 1. ESP32
+Acts as the central processing unit and core microcontroller of the robot, providing built-in Wi-Fi and Bluetooth capabilities for executing navigation logic and transmitting IoT telemetry data.
 
-<table>
-  <tr>
-    <td align="center"><img src="assets/images/esp32.jpeg" width="200"/><br/><b>ESP32</b></td>
-    <td align="center"><img src="assets/images/h-bridge-motor-driver.jpeg" width="200"/><br/><b>L298N Motor Driver</b></td>
-    <td align="center"><img src="assets/images/dc-motor.jpeg" width="200"/><br/><b>DC Motor</b></td>
-    <td align="center"><img src="assets/images/breadboard.jpeg" width="200"/><br/><b>Breadboard</b></td>
-  </tr>
-  <tr>
-    <td align="center"><img src="assets/images/ir-sensor.jpeg" width="200"/><br/><b>IR Sensor</b></td>
-    <td align="center"><img src="assets/images/programing-cable.jpeg" width="200"/><br/><b>Programming Cable</b></td>
-    <td align="center"><img src="assets/images/battery-holder%20.jpeg" width="200"/><br/><b>Battery Holder</b></td>
-    <td align="center"><img src="assets/images/battery-12v.jpeg" width="200"/><br/><b>12V Battery</b></td>
-  </tr>
-</table>
+<p align="center">
+  <img src="assets/images/esp32.jpeg" width="300"/>
+</p>
+
+### 2. L298N Dual H-Bridge Motor Driver
+Manages power and directional control for the DC motors, allowing the low-voltage control signals from the ESP32 to safely drive higher-voltage motors.
+
+<p align="center">
+  <img src="assets/images/h-bridge-motor-driver.jpeg" width="300"/>
+</p>
+
+### 3. DC Motor
+Serves as the electromechanical actuators that drive the robot's wheels, converting electrical energy into physical motion for mobility and navigation.
+
+<p align="center">
+  <img src="assets/images/dc-motor.jpeg" width="300"/>
+</p>
+
+### 4. Breadboard
+Provides a solderless platform for temporarily connecting and wiring electronic components together during prototyping and circuit assembly.
+
+<p align="center">
+  <img src="assets/images/breadboard.jpeg" width="300"/>
+</p>
+
+### 5. IR Sensor
+Acts as the proximity detection unit, emitting and receiving infrared light to instantly detect obstacles in the robot's path and send digital signals to the microcontroller.
+
+<p align="center">
+  <img src="assets/images/ir-sensor.jpeg" width="300"/>
+</p>
+
+### 6. Programming Cable (USB Cable)
+Facilitates serial communication and firmware flashing, allowing you to upload code from your computer directly to the ESP32 microcontroller.
+
+<p align="center">
+  <img src="assets/images/programing-cable.jpeg" width="300"/>
+</p>
+
+### 7. Battery Holder
+Securely houses the power source and provides organized terminal connections to distribute electrical power safely to the robot's circuitry.
+
+<p align="center">
+  <img src="assets/images/battery-holder%20.jpeg" width="300"/>
+</p>
+
+### 8. 12V Battery
+Delivers the necessary electrical power source to drive the motors, motor driver, and overall hardware system efficiently.
+
+<p align="center">
+  <img src="assets/images/battery-12v.jpeg" width="300"/>
+</p>
 
 ---
 
@@ -82,6 +110,8 @@ void loop() {
 
 **IDE used:** Arduino IDE
 
+The images below show the robot's output behavior: on the left, the robot's status when no obstacle is detected in its path; on the right, the robot's status upon detecting an obstacle.
+
 <p align="center">
   <img src="assets/images/no-obstacle.jpeg" width="300"/>
   <img src="assets/images/obstacledetected.jpeg" width="300"/>
@@ -114,11 +144,6 @@ void loop() {
 2. **Connect** the 12V battery and DC motors to the L298N motor driver.
 3. **Mount** the ESP32 and breadboard, then wire the IR sensors and motor driver to the ESP32 GPIO pins.
 4. **Upload** the firmware using the programming cable and test the obstacle avoidance and Wi-Fi features.
-
-<p align="center">
-  <img src="assets/images/woekshop.jpeg" width="500"/>
-  <br/><i>Build in progress</i>
-</p>
 
 ---
 
@@ -181,6 +206,11 @@ This project successfully demonstrates the integration of embedded systems and I
 ## 🙏 Acknowledgement
 
 This project was developed as part of the **3-Day Workshop on Wheeled Mobile Robotics**, organised by the **Department of Electronics and Communication Engineering (ECE)**, in association with the **IETE Student Forum** and the **Institution's Innovation Council (IIC)**, at **ATME College of Engineering, Mysuru**.
+
+<p align="center">
+  <img src="assets/images/woekshop.jpeg" width="500"/>
+  <br/><i>Workshop Poster</i>
+</p>
 
 - **Convenor:** Dr. Prathibha M K, HOD, Dept. of ECE, ATMECE, Mysuru
 - **Resource Person:** Prof. Nagesh M S, Assistant Professor, Dept. of ECE, ATMECE, Mysuru
