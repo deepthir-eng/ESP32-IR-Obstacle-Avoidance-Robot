@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ESP32 IR Obstacle Avoidance Robot</title>
+<style>
+  :root{
+    --bg:#0D1210;
+    --bg-panel:#121917;
+    --line:#233029;
+    --copper:#C87D3F;
+    --copper-dim:#8a5a30;
+    --text:#E9EFEA;
+    --text-dim:#9BAAA1;
+    --mono:'JetBrains Mono', 'Courier New', monospace;
+    --sans:-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.6;
+  }
+  ::selection{background:var(--copper); color:#0D1210;}
+
+  .wrap{max-width:920px; margin:0 auto; padding:0 24px;}
+
+  /* HERO */
+  header.hero{
+    border-bottom:1px solid var(--line);
+    padding:72px 0 56px;
+    background:
+      radial-gradient(circle at 85% 20%, rgba(200,125,63,0.10), transparent 45%),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(35,48,41,0.5) 40px);
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--copper);
+    letter-spacing:0.02em;
+  }
+  h1{
+    font-size:clamp(34px, 6vw, 54px);
+    line-height:1.08;
+    margin:14px 0 20px;
+    font-weight:700;
+    max-width:14ch;
+  }
+  .tagline{
+    font-size:18px;
+    color:var(--text-dim);
+    max-width:56ch;
+  }
+  .hero-meta{
+    display:flex;
+    gap:28px;
+    margin-top:36px;
+    flex-wrap:wrap;
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--text-dim);
+  }
+  .hero-meta strong{color:var(--text); display:block; font-family:var(--sans); font-size:15px;}
+
+  section{padding:56px 0; border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  h2{
+    font-size:26px;
+    margin-bottom:18px;
+    font-weight:700;
+  }
+  h2 span{color:var(--copper);}
+  p{color:var(--text-dim); max-width:70ch;}
+  p + p{margin-top:12px;}
+
+  /* COMPONENTS */
+  .comp-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(200px,1fr));
+    gap:2px;
+    background:var(--line);
+    border:1px solid var(--line);
+    margin-top:28px;
+  }
+  .comp{background:var(--bg-panel); padding:20px;}
+  .comp img{
+    width:100%; height:130px; object-fit:cover;
+    border:1px solid var(--line);
+    margin-bottom:14px;
+    filter:grayscale(15%);
+  }
+  .comp .num{font-family:var(--mono); font-size:12px; color:var(--copper);}
+  .comp h3{font-size:16px; margin:6px 0 8px;}
+  .comp p{font-size:13.5px; color:var(--text-dim);}
+
+  /* CODE */
+  pre{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-left:3px solid var(--copper);
+    padding:18px 20px;
+    overflow-x:auto;
+    font-family:var(--mono);
+    font-size:13px;
+    color:#B7C9BC;
+    margin-top:20px;
+  }
+
+  /* OUTPUT PAIR */
+  .pair{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:24px;}
+  .pair figure{margin:0;}
+  .pair img{width:100%; border:1px solid var(--line); display:block;}
+  figcaption{font-family:var(--mono); font-size:12px; color:var(--text-dim); margin-top:8px;}
+
+  /* CIRCUIT / GALLERY */
+  .stack{display:flex; flex-direction:column; gap:24px; margin-top:24px;}
+  .stack img{width:100%; border:1px solid var(--line); display:block;}
+  .stack figcaption{font-family:var(--mono); font-size:12px; color:var(--text-dim); margin-top:8px;}
+
+  /* APPLIST */
+  ul.app-list{list-style:none; margin-top:20px;}
+  ul.app-list li{
+    padding:16px 0;
+    border-top:1px solid var(--line);
+    display:grid;
+    grid-template-columns:140px 1fr;
+    gap:16px;
+  }
+  ul.app-list li:last-child{border-bottom:1px solid var(--line);}
+  ul.app-list strong{font-family:var(--mono); font-size:13px; color:var(--copper);}
+  ul.app-list p{margin:0; font-size:14.5px;}
+
+  /* VIDEO CTA */
+  .video-cta{
+    margin-top:20px;
+    display:inline-block;
+    border:1px solid var(--copper-dim);
+    color:var(--copper);
+    text-decoration:none;
+    font-family:var(--mono);
+    font-size:13px;
+    padding:12px 20px;
+  }
+  .video-cta:hover{background:var(--copper); color:#0D1210;}
+
+  /* ACK */
+  .ack-poster{margin-top:24px; max-width:420px;}
+  .ack-poster img{width:100%; border:1px solid var(--line); display:block;}
+  .ack-list{margin-top:20px; font-size:14.5px;}
+  .ack-list div{padding:10px 0; border-top:1px solid var(--line);}
+  .ack-list div:last-child{border-bottom:1px solid var(--line);}
+  .ack-list b{color:var(--text);}
+
+  footer{
+    padding:40px 0 60px;
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--text-dim);
+  }
+
+  @media (max-width:600px){
+    .pair{grid-template-columns:1fr;}
+    ul.app-list li{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">EMBEDDED SYSTEMS &middot; ESP32 &middot; IOT</div>
+    <h1>IR Obstacle Avoidance Robot</h1>
+    <p class="tagline">An autonomous mobile robot that reads its environment through infrared sensors, steers itself around obstacles in real time, and reports its status to the cloud &mdash; all on a single ESP32.</p>
+    <div class="hero-meta">
+      <div><strong>ESP32</strong>Core MCU</div>
+      <div><strong>Arduino IDE</strong>Firmware</div>
+      <div><strong>L298N</strong>Motor Driver</div>
+      <div><strong>Wi-Fi</strong>Telemetry</div>
+    </div>
+  </div>
+</header>
+
+<section id="overview">
+  <div class="wrap">
+    <h2><span>01</span> Overview</h2>
+    <p>The IoT-enabled autonomous obstacle detection robot is an embedded systems project powered by the ESP32 microcontroller and infrared sensors. It navigates environments independently while transmitting real-time operational data to a cloud dashboard.</p>
+    <p>The onboard ESP32 processes digital signals from IR sensors to make real-time steering decisions, while its built-in Wi-Fi publishes live sensor states for remote monitoring.</p>
+  </div>
+</section>
+
+<section id="components">
+  <div class="wrap">
+    <h2><span>02</span> Components</h2>
+    <p>Eight parts, wired together on a breadboard, form the complete robot.</p>
+    <div class="comp-grid">
+      <div class="comp">
+        <img src="assets/images/esp32.jpeg" alt="ESP32">
+        <div class="num">01</div>
+        <h3>ESP32</h3>
+        <p>Central processing unit with built-in Wi-Fi and Bluetooth for navigation logic and telemetry.</p>
+      </div>
+      <div class="comp">
+        <img src="assets/images/h-bridge-motor-driver.jpeg" alt="L298N Motor Driver">
+        <div class="num">02</div>
+        <h3>L298N Motor Driver</h3>
+        <p>Dual H-bridge that lets low-voltage ESP32 signals safely drive the higher-voltage DC motors.</p>
+      </div>
+      <div class="comp">
+        <img src="assets/images/dc-motor.jpeg" alt="DC Motor">
+        <div class="num">03</div>
+        <h3>DC Motor</h3>
+        <p>Electromechanical actuator converting electrical energy into wheel motion.</p>
+      </div>
+      <div class="comp">
+        <img src="assets/images/breadboard.jpeg" alt="Breadboard">
+        <div class="num">04</div>
+        <h3>Breadboard</h3>
+        <p>Solderless platform for prototyping and wiring the circuit.</p>
+      </div>
+      <div class="comp">
+        <img src="assets/images/ir-sensor.jpeg" alt="IR Sensor">
+        <div class="num">05</div>
+        <h3>IR Sensor</h3>
+        <p>Proximity unit that emits and reads infrared light to detect obstacles.</p>
+      </div>
+      <div class="comp">
+        <img src="assets/images/programing-cable.jpeg" alt="Programming Cable">
+        <div class="num">06</div>
+        <h3>Programming Cable</h3>
+        <p>USB link for flashing firmware from computer to ESP32.</p>
+      </div>
+      <div class="comp">
+        <img src="assets/images/battery-holder%20.jpeg" alt="Battery Holder">
+        <div class="num">07</div>
+        <h3>Battery Holder</h3>
+        <p>Houses the power source with organized terminal connections.</p>
+      </div>
+      <div class="comp">
+        <img src="assets/images/battery-12v.jpeg" alt="12V Battery">
+        <div class="num">08</div>
+        <h3>12V Battery</h3>
+        <p>Powers the motors, driver, and system hardware.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="working">
+  <div class="wrap">
+    <h2><span>03</span> Working Principle</h2>
+    <p>A 12V battery powers the L298N driver, which regulates power to the ESP32 and IR sensors. The sensors continuously scan for obstacles; on detection, the ESP32 commands the motor driver to steer around them &mdash; while streaming live status over Wi-Fi to a remote dashboard.</p>
+    <pre>int IRSensor = 12;
+
+void setup() {
+  pinMode(IRSensor, INPUT);
+  Serial.begin(115200);
+}
+
+void loop() {
+  int sensorValue = digitalRead(IRSensor);
+
+  if (sensorValue == HIGH) {
+    Serial.println("Obstacle Detected!");
+  } else {
+    Serial.println("Path Clear");
+  }
+}</pre>
+    <div class="pair">
+      <figure>
+        <img src="assets/images/no-obstacle.jpeg" alt="No obstacle detected">
+        <figcaption>No obstacle detected &mdash; path clear</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/images/obstacledetected.jpeg" alt="Obstacle detected">
+        <figcaption>Obstacle detected &mdash; avoidance triggered</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="circuit">
+  <div class="wrap">
+    <h2><span>04</span> Circuit &amp; Wiring</h2>
+    <div class="stack">
+      <figure>
+        <img src="assets/circuit/block-diagram.jpeg" alt="Block diagram">
+        <figcaption>System block diagram</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/circuit/Circuit%20diagram.jpeg" alt="Circuit diagram">
+        <figcaption>Circuit diagram</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/circuit/wiring%20connections.jpeg" alt="Wiring connections">
+        <figcaption>Wiring connections</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="video">
+  <div class="wrap">
+    <h2><span>05</span> Demo</h2>
+    <p>A short clip of the assembled robot detecting and avoiding an obstacle.</p>
+    <a class="video-cta" href="assets/vedio/robo%20vedio.mp4">&#9654; Watch demo video</a>
+  </div>
+</section>
+
+<section id="applications">
+  <div class="wrap">
+    <h2><span>06</span> Applications</h2>
+    <ul class="app-list">
+      <li><strong>Surveillance</strong><p>Automated patrolling and security monitoring indoors or in restricted areas.</p></li>
+      <li><strong>Industrial</strong><p>Prototype for Automated Guided Vehicles (AGVs) in smart warehouses.</p></li>
+      <li><strong>Education</strong><p>Hands-on platform for learning embedded systems, MCU programming, and IoT.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section id="acknowledgement">
+  <div class="wrap">
+    <h2><span>07</span> Acknowledgement</h2>
+    <p>Developed during the 3-Day Workshop on Wheeled Mobile Robotics, organised by the Department of ECE in association with the IETE Student Forum and IIC, at ATME College of Engineering, Mysuru.</p>
+    <div class="ack-poster">
+      <img src="assets/images/woekshop.jpeg" alt="Workshop poster">
+    </div>
+    <div class="ack-list">
+      <div><b>Convenor</b> &mdash; Dr. Prathibha M K, HOD, Dept. of ECE</div>
+      <div><b>Resource Person</b> &mdash; Prof. Nagesh M S, Dept. of ECE</div>
+      <div><b>ISF Co-ordinator</b> &mdash; Ms. Anupama Shettar, Dept. of ECE</div>
+      <div><b>Event Coordinators</b> &mdash; Prof. Pradeep Kumar Y, Mr. Srikantamurthy B, Mr. Karunakara Babu</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">deepthir-eng &middot; ESP32-IR-Obstacle-Avoidance-Robot</div>
+</footer>
+
+</body>
+</html>
