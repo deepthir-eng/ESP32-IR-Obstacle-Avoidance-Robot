@@ -27,12 +27,12 @@ Manages power and directional control for the DC motors, allowing the low-voltag
 ### 3. DC Motor
 Serves as the electromechanical actuators that drive the robot's wheels, converting electrical energy into physical motion for mobility and navigation.
 
-![DC Motor](assets/images/DC%20Motor.jpeg)
+![DC Motor](assets/images/dc-motor.jpeg)
 
 ### 4. Breadboard
 Provides a solderless platform for temporarily connecting and wiring electronic components together during prototyping and circuit assembly.
 
-![Breadboard](assets/images/Bread%20board.jpeg)
+![Breadboard](assets/images/breadboard.jpeg)
 
 ### 5. IR Sensor
 Acts as the proximity detection unit, emitting and receiving infrared light to instantly detect obstacles in the robot's path and send digital signals to the microcontroller.
@@ -52,7 +52,7 @@ Securely houses the power source and provides organized terminal connections to 
 ### 8. 12V Battery
 Delivers the necessary electrical power source to drive the motors, motor driver, and overall hardware system efficiently.
 
-![12V Battery](assets/images/Battery%20.jpeg)
+![12V Battery](assets/images/battery-12v.jpeg)
 
 ## Circuit Diagram & Connections
 
@@ -61,7 +61,7 @@ Delivers the necessary electrical power source to drive the motors, motor driver
 
 ## Block Diagram
 
-![Block Diagram](assets/circuit/Block%20diagram.jpeg)
+![Block Diagram](assets/circuit/block-diagram.jpeg)
 
 ## Working Principle
 
@@ -109,11 +109,11 @@ Solution: Fixed by ensuring the ESP32 and motor driver shared a common ground an
 
 **No obstacle detected** — both wheels rotate in the same direction.
 
-![No Obstacle Detected](assets/images/On%20clear%20path.jpeg)
+![No Obstacle Detected](assets/images/no-obstacle.jpeg)
 
 **Obstacle detected** — both wheels rotate in different directions.
 
-![Obstacle Detected](assets/images/Obstacles%20detected%20.jpeg)
+![Obstacle Detected](assets/images/obstacles-detected%20.jpeg)
 
 📹 [Watch Demo Video](assets/vedio/robo%20vedio.mp4)
 
