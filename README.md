@@ -17,42 +17,42 @@ The IoT-Enabled Autonomous Obstacle Detection Robot is an advanced embedded syst
 ### 1. ESP32
 Acts as the central processing unit and core microcontroller of the robot, providing built-in Wi-Fi and Bluetooth capabilities for executing navigation logic and transmitting IoT telemetry data.
 
-![ESP32](assets/images/robo%201.jpeg)
+![ESP32](assets/image/Esp32.jpeg)
 
 ### 2. L298N Dual H-Bridge Motor Driver
 Manages power and directional control for the DC motors, allowing the low-voltage control signals from the ESP32 to safely drive higher-voltage motors.
 
-![L298N Motor Driver](assets/images/robo%204.jpeg)
+![L298N Motor Driver](assets/image/H%20bridge%20motor%20driver%20.jpeg)
 
 ### 3. DC Motor
 Serves as the electromechanical actuators that drive the robot's wheels, converting electrical energy into physical motion for mobility and navigation.
 
-![DC Motor](assets/images/robo%206.jpeg)
+![DC Motor](assets/image/DC%20Motor.jpeg)
 
 ### 4. Breadboard
 Provides a solderless platform for temporarily connecting and wiring electronic components together during prototyping and circuit assembly.
 
-![Breadboard](assets/images/robo2.jpeg)
+![Breadboard](assets/image/Bread%20board.jpeg)
 
 ### 5. IR Sensor
 Acts as the proximity detection unit, emitting and receiving infrared light to instantly detect obstacles in the robot's path and send digital signals to the microcontroller.
 
-![IR Sensor](assets/images/robo3.jpeg)
+![IR Sensor](assets/image/IR%20Sensor.jpeg)
 
 ### 6. Programming Cable (USB Cable)
 Facilitates serial communication and firmware flashing, allowing you to upload code from your computer directly to the ESP32 microcontroller.
 
-![USB Cable](assets/images/robo7.jpeg)
+![USB Cable](assets/image/Programing%20cable%20%28%20USB%20Cable%20%29.jpeg)
 
 ### 7. Battery Holder
 Securely houses the power source and provides organized terminal connections to distribute electrical power safely to the robot's circuitry.
 
-![Battery Holder](assets/images/robo8.jpeg)
+![Battery Holder](assets/image/Battery%20holder%20.jpeg)
 
 ### 8. 12V Battery
 Delivers the necessary electrical power source to drive the motors, motor driver, and overall hardware system efficiently.
 
-![12V Battery](assets/images/robo9.jpeg)
+![12V Battery](assets/image/Battery%20.jpeg)
 
 ## Circuit Diagram & Connections
 
@@ -61,7 +61,7 @@ Delivers the necessary electrical power source to drive the motors, motor driver
 
 ## Block Diagram
 
-![Block Diagram](assets/circuit/Block%20diagram%20.jpeg)
+![Block Diagram](assets/circuit/Block%20diagram.jpeg)
 
 ## Working Principle
 
@@ -109,13 +109,13 @@ Solution: Fixed by ensuring the ESP32 and motor driver shared a common ground an
 
 **No obstacle detected** — both wheels rotate in the same direction.
 
-![No Obstacle Detected](assets/images/ro13.jpeg)
+![No Obstacle Detected](assets/image/On%20clear%20path.jpeg)
 
 **Obstacle detected** — both wheels rotate in different directions.
 
-![Obstacle Detected](assets/images/ro12.jpeg)
+![Obstacle Detected](assets/image/Obstacles%20detected%20.jpeg)
 
-📹 [Watch Demo Video](assets/video/robo%20vedio.mp4)
+📹 [Watch Demo Video](assets/vedio/robo%20vedio.mp4)
 
 ## Advantages
 
@@ -149,4 +149,4 @@ This project demonstrates an IoT-enabled autonomous obstacle detection robot bui
 
 This project was developed during a 3-day workshop on "Wheeled Mobile Robotics," organized by the Department of ECE at ATME College of Engineering, Mysuru, in association with the IETE Student Forum and IIC, held on 22nd, 23rd & 30th September 2026. The session was conducted by Prof. Nagesh M S, Assistant Professor, Dept. of ECE, under the guidance of Dr. Prathibha M K (Convenor) and Ms. Anupama Shettar (ISF Coordinator).
 
-![Workshop Poster](assets/images/woekshop.jpeg)
+![Workshop Poster](assets/image/woekshop.jpeg)
